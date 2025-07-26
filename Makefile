@@ -1,7 +1,7 @@
 # Define the compiler and flags
 NVCC = /usr/local/cuda/bin/nvcc
 CXX = g++
-CXXFLAGS = -std=c++11 -I/usr/local/cuda/include
+CXXFLAGS = -std=c++17 -I/usr/local/cuda/include
 LDFLAGS = -L/usr/local/cuda/lib64 -lcudart -lnppc -lnppial -lnppicc -lnppidei -lnppif -lnppig -lnppim -lnppist -lnppisu -lnppitc
 
 # Define directories
@@ -11,7 +11,7 @@ DATA_DIR = data
 LIB_DIR = lib
 
 # Define source files and target executable
-SRC = $(SRC_DIR)/AudioFilter.cpp
+SRC = $(SRC_DIR)/AudioFilter.cu
 TARGET = $(BIN_DIR)/AudioFilter
 
 # Define the default rule
