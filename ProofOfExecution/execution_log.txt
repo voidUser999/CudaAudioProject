@@ -1,0 +1,38 @@
+aman@LAPTOP-TTO38PND:~/lp-filter/CudaAudioProject$ make clean
+rm -rf bin/*
+aman@LAPTOP-TTO38PND:~/lp-filter/CudaAudioProject$ make
+mkdir -p bin
+/usr/local/cuda/bin/nvcc -std=c++17 -I/usr/local/cuda/include src/AudioFilter.cu -o bin/AudioFilter -L/usr/local/cuda/lib64 -lcudart -lnppc -lnppial -lnppicc -lnppidei -lnppif -lnppig -lnppim -lnppist -lnppisu -lnppitc
+aman@LAPTOP-TTO38PND:~/lp-filter/CudaAudioProject$ make run
+./bin/AudioFilter data/input data/output
+Loading: "data/input/oboe-bassoon.wav"
+ Loaded 2977822 samples @ 48000 Hz, 16-bit, 2-channel
+ Copied to GPU
+ Low-pass FIR done (radius=16)
+ Copied back to host
+ Saved filtered WAV to "data/output/oboe-bassoon_filtered.wav"
+Loading: "data/input/gtr-jazz.wav"
+ Loaded 911774 samples @ 48000 Hz, 16-bit, 2-channel
+ Copied to GPU
+ Low-pass FIR done (radius=16)
+ Copied back to host
+ Saved filtered WAV to "data/output/gtr-jazz_filtered.wav"
+Loading: "data/input/slideflute.wav"
+ Loaded 1239076 samples @ 48000 Hz, 16-bit, 2-channel
+ Copied to GPU
+ Low-pass FIR done (radius=16)
+ Copied back to host
+ Saved filtered WAV to "data/output/slideflute_filtered.wav"
+Loading: "data/input/violin.wav"
+ Loaded 464469 samples @ 44100 Hz, 16-bit, 1-channel
+ Copied to GPU
+ Low-pass FIR done (radius=16)
+ Copied back to host
+ Saved filtered WAV to "data/output/violin_filtered.wav"
+Loading: "data/input/gongs.wav"
+ Loaded 2086558 samples @ 48000 Hz, 16-bit, 2-channel
+ Copied to GPU
+ Low-pass FIR done (radius=16)
+ Copied back to host
+ Saved filtered WAV to "data/output/gongs_filtered.wav"
+Done.
