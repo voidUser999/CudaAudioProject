@@ -12,7 +12,7 @@
 
 namespace fs = std::filesystem;
 
-//------------------------------------------------------------------------------
+
 // CUDA error-check helper
 inline void checkCuda(cudaError_t err, const char *msg) {
     if (err != cudaSuccess) {
@@ -22,7 +22,6 @@ inline void checkCuda(cudaError_t err, const char *msg) {
     }
 }
 
-//------------------------------------------------------------------------------
 // GPU kernel: low-pass FIR on interleaved data (supports N channels)
 __global__
 void lowPassInterleaved(const float* __restrict__ in,
@@ -50,7 +49,7 @@ void lowPassInterleaved(const float* __restrict__ in,
     out[frame*channels + ch] = sum / float(count);
 }
 
-//------------------------------------------------------------------------------
+
 // Process a single WAV file: load, filter, save
 void processFile(const fs::path &inPath, const fs::path &outPath) {
     std::cout << "Loading: " << inPath << "\n";
