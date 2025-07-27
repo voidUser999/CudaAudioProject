@@ -46,6 +46,8 @@ make run
 The core of the signal processing is a custom CUDA kernel named lowPassInterleaved. Each CUDA thread is assigned to calculate a single output sample. The kernel handles interleaved, multi-channel audio by calculating the correct frame and channel for each sample's global index. The filter is a moving average with a configurable radius, implemented with boundary clamping to correctly process samples at the beginning and end of the signal
 
 
+##Output Files
+Genrated .wav files are present in CudaAudioProject>data>output.
 
 
 
