@@ -66,7 +66,7 @@ void processFile(const fs::path &inPath, const fs::path &outPath) {
     float rate     = audioFile.getSampleRate();
     int samples    = frames * channels;
 
-    std::cout << "✅ Loaded " << samples << " samples @ "
+    std::cout << " Loaded " << samples << " samples @ "
               << rate << " Hz, " << bitDepth
               << "-bit, " << channels << "-channel\n";
 
@@ -86,7 +86,7 @@ void processFile(const fs::path &inPath, const fs::path &outPath) {
     checkCuda(cudaMalloc(&d_out, bytes), "cudaMalloc d_out");
     checkCuda(cudaMemcpy(d_in, h_in.data(), bytes, cudaMemcpyHostToDevice),
               "H2D memcpy");
-    std::cout << "✅ Copied to GPU\n";
+    std::cout << " Copied to GPU\n";
 
     // Launch kernel
     const int KERNEL_RADIUS = 16;   // radius -> taps = 2*radius+1
@@ -97,12 +97,12 @@ void processFile(const fs::path &inPath, const fs::path &outPath) {
     );
     checkCuda(cudaPeekAtLastError(),  "kernel launch");
     checkCuda(cudaDeviceSynchronize(), "kernel sync");
-    std::cout << "✅ Low-pass FIR done (radius=" << KERNEL_RADIUS << ")\n";
+    std::cout << " Low-pass FIR done (radius=" << KERNEL_RADIUS << ")\n";
 
     // Copy back & un-flatten
     checkCuda(cudaMemcpy(h_out.data(), d_out, bytes, cudaMemcpyDeviceToHost),
               "D2H memcpy");
-    std::cout << "✅ Copied back to host\n";
+    std::cout << " Copied back to host\n";
 
     AudioFile<float> outFile;
     outFile.setAudioBufferSize(channels, frames);
@@ -115,7 +115,7 @@ void processFile(const fs::path &inPath, const fs::path &outPath) {
     }
 
     if (outFile.save(outPath.string())) {
-        std::cout << "✅ Saved filtered WAV to " << outPath << "\n";
+        std::cout << " Saved filtered WAV to " << outPath << "\n";
     } else {
         std::cerr << "ERROR: failed to save " << outPath << "\n";
     }
